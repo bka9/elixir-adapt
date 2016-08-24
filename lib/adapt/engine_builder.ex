@@ -14,7 +14,7 @@ defmodule Adapt.EngineBuilder do
 
   def regex(pattern, %Builder{entities: entities, intents: intents}), do: %Builder{entities: entities ++ [%RegexEntity{pattern: pattern}], intents: intents}
 
-  def require(%Intent{name: name, requirements: requirements, optionals: optionals}, e, attribute \\ ""), do: %Intent{name: name, requirements: requirements ++ [%{entity: e, attribute: if attribute == "" do e else attribute end}], optionals: optionals}
+  def required(%Intent{name: name, requirements: requirements, optionals: optionals}, e, attribute \\ ""), do: %Intent{name: name, requirements: requirements ++ [%{entity: e, attribute: if attribute == "" do e else attribute end}], optionals: optionals}
 
   def optional(%Intent{name: name, requirements: requirements, optionals: optionals}, e, attribute \\ ""), do: %Intent{name: name,requirements: requirements, optionals: optionals ++ [%{entity: e, attribute: if attribute == "" do e else attribute end}]}
 
