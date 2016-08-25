@@ -4,10 +4,6 @@ defmodule Adapt.EngineBuilder do
   alias Adapt.Model.RegexEntity, as: RegexEntity
   alias Adapt.Model.Intent, as: Intent
 
-  def build(%Builder{entities: entities, intents: intents}) do
-    Adapt.Engine.start(%{entities: Enum.map(entities, fn(entity) -> encode(entity) end), intents: Enum.map(intents, fn(it) -> encode(it) end)})
-  end
-
   def intent(it, %Builder{entities: entities, intents: intents}), do: %Builder{entities: entities, intents: intents ++ [it]}
 
   def entity(name, values, %Builder{entities: entities, intents: intents}), do: %Builder{entities: entities ++ [%Entity{name: name, values: values}], intents: intents}

@@ -1,3 +1,3 @@
 defmodule Adapt.Model.RegexEntity do
-  defstruct pattern: ""
+  defstruct type: "regex", pattern: ""
 end

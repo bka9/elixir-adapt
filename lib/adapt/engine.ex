@@ -1,17 +1,8 @@
 defmodule Adapt.Engine do
-  alias Porcelain.Process, as: Proc
-  alias Porcelain.Result
-
-  def start(options) do
-    command = "python " <> Path.join(:code.priv_dir(:adapt), "worker.py") <> " '" <> Poison.encode!(options) <> "'\r\n"
-    port = Porcelain.spawn_shell(command, in: :receive, out: {:send, self()})
-    {:ok, port}
-  end
-  def query(text, {:ok, %Proc{pid: pid} = port}) do
-    search = "#{Poison.encode! %{input: text}}\r\n"
-    Proc.send_input(port, search)
-    receive do
-      {^pid, :data, :out, data} -> Poison.decode! data
+  def query(text, options) do
+    case Porcelain.exec("python",[Path.join(:code.priv_dir(:adapt), "worker.py"), Poison.encode!(options), Poison.encode!(%{input: text})]) do
+      %Porcelain.Result{err: nil, out: result} -> {:ok, Poison.decode! result}
+      %Porcelain.Result{err: error, out: _out} -> {:error, error}
     end
   end
 end

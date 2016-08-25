@@ -4,7 +4,6 @@ from adapt.intent import IntentBuilder
 from adapt.engine import IntentDeterminationEngine
 
 engine = IntentDeterminationEngine()
-
 schema = json.loads(sys.argv[1])
 
 for entity in schema["entities"]:
@@ -23,8 +22,7 @@ for intent in schema["intents"]:
     engine.register_intent_parser(ib.build())
 
 if __name__ == "__main__":
-    while True:
-        line = sys.stdin.readline()
+        line = sys.argv[2]
         query = json.loads(line)
         intents = list(engine.determine_intent(query["input"]))
         response = {"intents": intents}

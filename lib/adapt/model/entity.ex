@@ -1,3 +1,3 @@
 defmodule Adapt.Model.Entity do
-  defstruct name: "", values: []
+  defstruct type: "string", name: "", values: []
 end
