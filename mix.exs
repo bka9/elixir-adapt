@@ -7,6 +7,7 @@ defmodule Adapt.Mixfile do
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: description(),
      deps: deps(),
      package: package()]
   end
@@ -19,6 +20,12 @@ defmodule Adapt.Mixfile do
   defp deps do
     [{:porcelain, "~> 2.0.2"},
      {:poison, "~> 2.0"}]
+  end
+
+  defp description do
+    """
+     A wrapper of the Adapt Python Project. It allows the processing of user input to extract intentions in a machine readable way.
+    """
   end
 
   defp package do
