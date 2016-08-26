@@ -1,19 +1,19 @@
 defmodule Adapt do
   use Application
+  @moduledoc """
+    Adapt is an application for natural language parser to deduce intent from a string. It uses the [Adapt] python project.
 
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
-  # for more information on OTP Applications
+    Since it uses the adapt python module, it requires that python and adapt are both installed locally. Please follow the instructions on the [Adapt] site for instructions.
+
+    [Adapt]: https://adapt.mycroft.ai/
+  """
+
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    # Define workers and child supervisors to be supervised
     children = [
-      # Starts a worker by calling: Adapt.Worker.start_link(arg1, arg2, arg3)
-      # worker(Adapt.Worker, [arg1, arg2, arg3]),
     ]
 
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Adapt.Supervisor]
     Supervisor.start_link(children, opts)
   end
