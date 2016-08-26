@@ -26,7 +26,7 @@ defmodule Adapt.Mixfile do
      name: :adapt,
      files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
      maintainers: ["Kevin Anderson"],
-     licenses: ["Apache 2.0"],
+     licenses: ["GNU GPLv3"],
      links: %{"GitHub" => "https://github.com/bka9/elixir-adapt"}]
   end
 end
