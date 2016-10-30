@@ -19,7 +19,8 @@ defmodule Adapt.Mixfile do
 
   defp deps do
     [{:porcelain, "~> 2.0.2"},
-     {:poison, "~> 2.0"}]
+     {:poison, "~> 2.0"},
+     {:ex_doc, "~> 0.12", only: :dev}]
   end
 
   defp description do
